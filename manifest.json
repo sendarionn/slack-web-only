@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Slack Web Only Fast",
+  "version": "0.4.0",
+  "description": "Slack共有URLを初回から無操作でWeb版Slackへ自動転送します。",
+  "permissions": [
+    "storage",
+    "tabs",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "https://*.slack.com/*",
+    "https://app.slack.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
