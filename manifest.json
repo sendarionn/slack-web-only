@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Slack Web Only Fast",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Slack共有URLを初回から無操作でWeb版Slackへ自動転送します。",
   "permissions": [
     "storage",

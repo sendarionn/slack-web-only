@@ -27,10 +27,12 @@ function parseTarget(urlString) {
 
   m = u.pathname.match(/^\/archives\/([A-Z0-9]+)\/p(\d{10})(\d{6})\/?$/i);
   if (m) {
+    const threadTs = u.searchParams.get("thread_ts");
     return {
       host: u.hostname.toLowerCase(),
       channel: m[1],
       messageTs: `${m[2]}.${m[3]}`,
+      threadTs: /^\d{10}\.\d{6}$/.test(threadTs || "") ? threadTs : null,
       search: u.search || ""
     };
   }
@@ -53,7 +55,8 @@ function directUrl(teamId, target) {
     `${encodeURIComponent(target.channel)}`;
 
   if (target.messageTs) {
-    return `${base}/thread/${encodeURIComponent(target.channel)}-${target.messageTs}${target.search}`;
+    const rootTs = target.threadTs || target.messageTs;
+    return `${base}/thread/${encodeURIComponent(target.channel)}-${rootTs}${target.search}`;
   }
   return `${base}${target.search}`;
 }
